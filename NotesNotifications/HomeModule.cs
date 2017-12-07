@@ -7,34 +7,20 @@ namespace NotificationsService
     {
         public HomeModule()
         {
-            Get["/"] = _ =>
-            {
-                return Response.AsText("Notifications Service");
-            };
+            Get["/"] = _ => Response.AsText("Notifications Service");
 
-            Get["/Status"] = _ =>
-            {
-                if (DateTime.Now.Second % 10 == 0)
-                {
-                    var response = new Response();
-                    response.StatusCode = HttpStatusCode.InternalServerError;
-                    return response;
-                }
-                else
-                {
-                    return Response.AsText("OK");
-                }
-                    
-            };
+            Get["/Status"] = _ => 
+                DateTime.Now.Second % 10 == 0
+                    ? new Response {StatusCode = HttpStatusCode.InternalServerError}
+                    : Response.AsText("OK");
 
             Get["/Messages"] = _ =>
             {
                 var response = Response.AsJson(MessagesQueue.GetAll());
-                Console.WriteLine("Returning messages: " + response);
                 MessagesQueue.Clear();
+                Console.WriteLine($"Returning messages: {response}");
                 return response;
             };
         }
-
     }
 }

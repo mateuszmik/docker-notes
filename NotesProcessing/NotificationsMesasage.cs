@@ -14,6 +14,5 @@ namespace ProcessingService
             Guid = Guid.NewGuid();
             GeneratedOn = DateTime.Now;
         }
-
     }
 }
