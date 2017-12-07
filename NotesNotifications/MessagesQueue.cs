@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NATS.Client;
 
 namespace NotificationsService
@@ -7,8 +8,10 @@ namespace NotificationsService
     {
         private static IList<Msg> _listOfMessages = new List<Msg>();
 
-        public static object GetAll() =>
-            _listOfMessages;
+        public static IReadOnlyCollection<string> GetAll() =>
+            _listOfMessages
+                .Select(x => System.Text.Encoding.Default.GetString(x.Data))
+                .ToList();
 
         public static void Add(Msg msg) =>
             _listOfMessages.Add(msg);

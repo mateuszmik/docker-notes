@@ -1,0 +1,20 @@
+﻿import { Injectable } from "@angular/core";
+import { Http, Response } from "@angular/http";
+import { Observable } from "rxjs";
+
+@Injectable()
+export class NotificationsService {
+    private readonly url = "http://localhost:1234/Messages";
+
+    constructor(private readonly http: Http) { }
+
+    public getMessages() {
+        return this.http
+            .get(this.url)
+            .toPromise()
+            .then((r: Response) => {
+                return r.json() as string[];
+            })
+            .catch((error) => Promise.reject(error));
+    }
+}
