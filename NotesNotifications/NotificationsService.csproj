@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="HomeModule.cs" />
     <Compile Include="MessagesQueue.cs" />
+    <Compile Include="NancyExtensions.cs" />
     <Compile Include="NancySelfHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

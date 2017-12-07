@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Linq;
 using Nancy;
 
 namespace NotificationsService
 {
-    public class HomeModule : Nancy.NancyModule
+    public class HomeModule : NancyModule
     {
         public HomeModule()
         {
+            this.EnableCors();
+
             Get["/"] = _ => Response.AsText("Notifications Service");
 
             Get["/Status"] = _ => 
@@ -16,10 +19,10 @@ namespace NotificationsService
 
             Get["/Messages"] = _ =>
             {
-                var response = Response.AsJson(MessagesQueue.GetAll());
+                var result = MessagesQueue.GetAll();
                 MessagesQueue.Clear();
-                Console.WriteLine($"Returning messages: {response}");
-                return response;
+                Console.WriteLine($"Returning messages: {result.Select(x => x)}");
+                return Response.AsJson(result);
             };
         }
     }
