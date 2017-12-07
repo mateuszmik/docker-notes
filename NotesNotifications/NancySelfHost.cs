@@ -11,8 +11,8 @@ namespace NotificationsService
 
         public void Start()
         {
-            //var thread = new Thread(QueueSubscriber.SubscribeToQueue);
-            //thread.Start();
+            var thread = new Thread(QueueSubscriber.SubscribeToQueue);
+            thread.Start();
             _host = new NancyHost(new Uri(Url));
             _host.Start();
             Console.WriteLine($"Running on {Url}");
