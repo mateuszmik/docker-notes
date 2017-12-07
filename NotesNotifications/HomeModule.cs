@@ -19,7 +19,8 @@ namespace NotificationsService
 
             Get["/Messages"] = _ =>
             {
-                var result = MessagesQueue.GetAll();
+                //var result = MessagesQueue.GetAll();
+                var result = new[] {"dede"};
                 MessagesQueue.Clear();
                 Console.WriteLine($"Returning messages: {result.Select(x => x)}");
                 return Response.AsJson(result);
