@@ -8,9 +8,10 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>NotificationsService</RootNamespace>
     <AssemblyName>NotificationsService</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,13 +34,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Nancy, Version=1.4.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Nancy.1.4.4\lib\net40\Nancy.dll</HintPath>
+      <HintPath>..\packages\Nancy.1.4.4\lib\net40\Nancy.dll</HintPath>
     </Reference>
     <Reference Include="Nancy.Hosting.Self, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Nancy.Hosting.Self.1.4.1\lib\net40\Nancy.Hosting.Self.dll</HintPath>
+      <HintPath>..\packages\Nancy.Hosting.Self.1.4.1\lib\net40\Nancy.Hosting.Self.dll</HintPath>
     </Reference>
     <Reference Include="NATS.Client, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NATS.Client.0.8.0\lib\net45\NATS.Client.DLL</HintPath>
+      <HintPath>..\packages\NATS.Client.0.8.0\lib\net45\NATS.Client.DLL</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -52,12 +53,13 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Topshelf, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
-      <HintPath>packages\Topshelf.4.0.3\lib\net452\Topshelf.dll</HintPath>
+      <HintPath>..\packages\Topshelf.4.0.3\lib\net452\Topshelf.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HomeModule.cs" />
     <Compile Include="MessagesQueue.cs" />
+    <Compile Include="NancyExtensions.cs" />
     <Compile Include="NancySelfHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

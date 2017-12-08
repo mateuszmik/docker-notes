@@ -1,5 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import {NotificationsService} from "./notifications.service";
+
 @Component({
     selector: 'my-app',
     template: `    
@@ -14,6 +16,15 @@ import { Observable } from 'rxjs/Observable';
 })
 export class AppComponent {
     title = 'ASP.NET MVC 5 with Angular 2234';
-    notifications = ['Notification 1', 'Notification 2', 'Notification 3', 'Notification 4'];
+    notifications = [];
 
+    constructor(private readonly notificationsService: NotificationsService) {
+        this.notificationsService
+            .getMessages()
+            .then(x => {
+                console.log("dd");
+                console.log(x);
+                this.notifications = x;
+            });
+    }
 }
