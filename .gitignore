@@ -256,3 +256,6 @@ ModelManifest.xml
 /src/NotesWeb/Scripts/app.js
 /src/NotesWeb/Scripts/systemjs-angular-loader.js
 /src/NotesWeb/Scripts/systemjs.config.extras.js
+docker/**/NotesWeb/
+docker/**/NotificationService/
+docker/**/Processingservice/
