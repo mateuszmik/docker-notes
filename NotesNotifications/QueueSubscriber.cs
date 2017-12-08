@@ -6,35 +6,33 @@ namespace NotificationsService
 {
     internal static class QueueSubscriber
     {
-        private static string messageAddress = ConfigurationManager.AppSettings.Get("message-queue");
-        private static IConnection c = c = new ConnectionFactory().CreateConnection(messageAddress);
+        private static readonly string MessageAddress = ConfigurationManager.AppSettings.Get("message-queue");
+        private static readonly IConnection Connection = new ConnectionFactory().CreateConnection(MessageAddress);
 
         public static void SubscribeToQueue()
         {
-
             try
             {
-                Console.WriteLine($"Trying to connect to  {messageAddress}");
-                Console.WriteLine($"Successfully connected to  {messageAddress}");
+                Console.WriteLine($"Trying to connect to  {MessageAddress}");
+                Console.WriteLine($"Successfully connected to  {MessageAddress}");
 
-                IAsyncSubscription s = c.SubscribeAsync("foo");
-                s.MessageHandler += (sender, args) =>
-                {
-                    Console.WriteLine("Received: " + args.Message);
-                    MessagesQueue.Add(args.Message);
-                };
-                s.Start();
+                var subscription = Connection.SubscribeAsync("foo");
+                subscription.MessageHandler += MessageHandler();
+                subscription.Start();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Unable to connect to queueing server. will continue without it.");
+                Console.WriteLine("Unable to connect to queueing server. will continue without it.", ex);
             }
         }
 
-        public static void MessageHandler(object sender, MsgHandlerEventArgs e)
+        private static EventHandler<MsgHandlerEventArgs> MessageHandler()
         {
-            Console.WriteLine($"received message {e.Message.Data}");
+            return (sender, args) =>
+            {
+                Console.WriteLine($"Received: {args.Message}");
+                MessagesQueue.Add(args.Message);
+            };
         }
-
     }
 }

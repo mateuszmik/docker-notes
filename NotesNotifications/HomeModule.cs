@@ -1,40 +1,29 @@
 ﻿using System;
+using System.Linq;
 using Nancy;
 
 namespace NotificationsService
 {
-    public class HomeModule : Nancy.NancyModule
+    public class HomeModule : NancyModule
     {
         public HomeModule()
         {
-            Get["/"] = _ =>
-            {
-                return Response.AsText("Notifications Service");
-            };
+            this.EnableCors();
 
-            Get["/Status"] = _ =>
-            {
-                if (DateTime.Now.Second % 10 == 0)
-                {
-                    var response = new Response();
-                    response.StatusCode = HttpStatusCode.InternalServerError;
-                    return response;
-                }
-                else
-                {
-                    return Response.AsText("OK");
-                }
-                    
-            };
+            Get["/"] = _ => Response.AsText("Notifications Service");
+
+            Get["/Status"] = _ => 
+                DateTime.Now.Second % 10 == 0
+                    ? new Response {StatusCode = HttpStatusCode.InternalServerError}
+                    : Response.AsText("OK");
 
             Get["/Messages"] = _ =>
             {
-                var response = Response.AsJson(MessagesQueue.GetAll());
-                Console.WriteLine("Returning messages: " + response);
+                var result = MessagesQueue.GetAll();
                 MessagesQueue.Clear();
-                return response;
+                Console.WriteLine($"Returning messages: {result.Select(x => x)}");
+                return Response.AsJson(result);
             };
         }
-
     }
 }

@@ -6,25 +6,21 @@ namespace NotificationsService
 {
     internal class NancySelfHost
     {
-        private NancyHost host;
+        private const string Url = "http://localhost:1234";
+        private NancyHost _host;
 
         public void Start()
         {
-            Thread t=  new Thread(new ThreadStart(QueueSubscriber.SubscribeToQueue));
-            t.Start();
-            host = new NancyHost(new Uri("http://localhost:1234"));
-            host.Start();
-            Console.WriteLine("Running on http://localhost:1234");
-
-           
-
-
+            var thread = new Thread(QueueSubscriber.SubscribeToQueue);
+            thread.Start();
+            _host = new NancyHost(new Uri(Url));
+            _host.Start();
+            Console.WriteLine($"Running on {Url}");
         }
 
-       
         public void Stop()
         {
-            host.Stop();
+            _host.Stop();
         }
     }
 }
