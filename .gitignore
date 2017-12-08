@@ -247,12 +247,12 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-/NotesWeb/libs
-/NotesWeb/Scripts/main.js.map
-/NotesWeb/Scripts/main.js
-/NotesWeb/Scripts/boot.js.map
-/NotesWeb/Scripts/boot.js
-/NotesWeb/Scripts/app.js.map
-/NotesWeb/Scripts/app.js
-/NotesWeb/Scripts/systemjs-angular-loader.js
-/NotesWeb/Scripts/systemjs.config.extras.js
+/src/NotesWeb/libs
+/src/NotesWeb/Scripts/main.js.map
+/src/NotesWeb/Scripts/main.js
+/src/NotesWeb/Scripts/boot.js.map
+/src/NotesWeb/Scripts/boot.js
+/src/NotesWeb/Scripts/app.js.map
+/src/NotesWeb/Scripts/app.js
+/src/NotesWeb/Scripts/systemjs-angular-loader.js
+/src/NotesWeb/Scripts/systemjs.config.extras.js
