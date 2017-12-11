@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+ message-queue:
+  image: nats
+  networks:
+   - notesapp-net 
+
+ notes-web:
+  image:
+  ports:
+   - "80:80"
+  depends_on:
+   - notifications-service
+  
+ notifications-service:
+  image:
+  depends_on:
+   - message-queue
+
+ processing-service:
+  image:
+  depends_on:
+   - message-queue
+   - notifications-service 
+ 
+ networks:
+
+volumes:
