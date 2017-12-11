@@ -17,8 +17,11 @@ namespace ProcessingService
         private static void Run()
         {
             var messageAddress = ConfigurationManager.AppSettings.Get("message-queue");
+            Console.WriteLine($"Trying to connect to  {messageAddress}");
+            
             using (var c = new ConnectionFactory().CreateConnection(messageAddress))
             {
+                Console.WriteLine($"Processing Service successfully connected to  {messageAddress}");
                 while (true)
                 {
                     Thread.Sleep(3000);

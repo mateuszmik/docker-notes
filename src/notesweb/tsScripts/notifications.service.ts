@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class NotificationsService {
-    private readonly url = "http://localhost:1234/Messages";
+    private readonly url = "http://notifications:1234/Messages";
 
     constructor(private readonly http: Http) { }
 

@@ -15,7 +15,7 @@ require("rxjs/add/operator/toPromise");
 var NotificationsService = /** @class */ (function () {
     function NotificationsService(http) {
         this.http = http;
-        this.url = "http://localhost:1234/Messages";
+        this.url = "http://notifications:1234/Messages";
     }
     NotificationsService.prototype.getMessages = function () {
         return this.http
@@ -33,3 +33,4 @@ var NotificationsService = /** @class */ (function () {
     return NotificationsService;
 }());
 exports.NotificationsService = NotificationsService;
+//# sourceMappingURL=notifications.service.js.map

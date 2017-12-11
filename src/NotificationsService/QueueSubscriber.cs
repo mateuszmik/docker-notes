@@ -14,15 +14,15 @@ namespace NotificationsService
             try
             {
                 Console.WriteLine($"Trying to connect to  {MessageAddress}");
-                Console.WriteLine($"Successfully connected to  {MessageAddress}");
+                Console.WriteLine($"Notifications Service Successfully connected to  {MessageAddress}");
 
-                var subscription = Connection.SubscribeAsync("foo");
+                var subscription = Connection.SubscribeAsync("notes");
                 subscription.MessageHandler += MessageHandler();
                 subscription.Start();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Unable to connect to queueing server. will continue without it.", ex);
+                Console.WriteLine($"Unable to connect to queueing server on {MessageAddress}. will continue without it.", ex);
             }
         }
 
