@@ -1,29 +1,43 @@
 version: '3.3'
 
 services:
- message-queue:
+ notesqueue:
   image: nats
   networks:
    - notesapp-net 
 
  notes-web:
-  image:
+  image: dockernotes/notes-web
+  build:
+   context: notes-web
   ports:
    - "80:80"
   depends_on:
    - notifications-service
-  
+  networks:
+   - notesapp-net
+   
  notifications-service:
-  image:
+  image: dockernotes/notifications-service
+  build:
+   context: notifications-service
+  ports:
+   - "1234:1234"
   depends_on:
-   - message-queue
-
+   - notesqueue
+  networks:
+   - notesapp-net
+   
  processing-service:
-  image:
+  image: dockernotes/processing-service
+  build:
+   context: processing-service
   depends_on:
-   - message-queue
+   - notesqueue
    - notifications-service 
- 
- networks:
-
-volumes:
+  networks:
+   - notesapp-net
+   
+networks:
+  notesapp-net:
+    driver: nat

@@ -5,7 +5,7 @@ docker rm -f ps
 docker rm -f nw
 
 write-host "notesqueue:"
-docker container run -d -p:4222:4222 --net mynet --name notesqueue nats
+docker container run -d --net mynet --name notesqueue nats
 
 write-host "notifications:"
 docker container run -d  -p:1234:1234 --net mynet --name notifications dockernotes/notifications-service
