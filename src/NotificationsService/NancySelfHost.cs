@@ -12,7 +12,7 @@ namespace NotificationsService
 
         public void Start()
         {
-            _url = ConfigurationService.GetNotificationsEndpoint();
+            _url = ConfigurationService.GetLocalNotificationsEndpoint();
             var thread = new Thread(QueueSubscriber.SubscribeToQueue);
             thread.Start();
             _host = new NancyHost(new Uri(_url));

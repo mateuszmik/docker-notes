@@ -16,6 +16,7 @@ services:
    - "80:80"
   depends_on:
    - notifications-service
+   - processing-service
   networks:
    - notesapp-net
   env_file:

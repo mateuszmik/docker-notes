@@ -8,16 +8,23 @@ namespace DockerNotesCommon
 {
     public class ConfigurationService
     {
+        public static string GetLocalNotificationsEndpoint()
+        {
+            var notificationsUrl = "http://localhost:81";
+
+            return notificationsUrl;
+        }
+
+
         public static string GetNotificationsEndpoint()
         {
-            var notificationsUrl = Environment.GetEnvironmentVariable("DN-NOTIFICATIONS-URL") ?? "http://localhost:1234/Messages";
-
+            var notificationsUrl = Environment.GetEnvironmentVariable("DN_NOTIFICATIONS_URL",EnvironmentVariableTarget.Machine) ?? "NOTSET";
             return notificationsUrl;
         }
 
         public static string GetQueuesEndpoint()
         {
-            var notificationsUrl = Environment.GetEnvironmentVariable("DN-QUEUES-ENDPOINT") ?? "nats://notesqueue:4222";
+            var notificationsUrl = Environment.GetEnvironmentVariable("DN_QUEUES_ENDPOINT") ?? "nats://notesqueue:4222";
 
             return notificationsUrl;
         }

@@ -1,0 +1,2 @@
+[Environment]::SetEnvironmentVariable("DN_NOTIFICATIONS_URL", "http://10.164.120.25:81/Messages", "Machine")
+[Environment]::SetEnvironmentVariable("DN_QUEUES_ENDPOINT", "nats://notesqueue:4222/", "Machine")
