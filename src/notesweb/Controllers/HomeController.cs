@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DockerNotesCommon;
 
 namespace ng2Mvc5Demo.Controllers
 {
@@ -10,6 +11,7 @@ namespace ng2Mvc5Demo.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.NotificationsUrl = ConfigurationService.GetNotificationsEndpoint();
             return View();
         }
 

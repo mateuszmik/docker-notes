@@ -5,11 +5,15 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class NotificationsService {
-    private readonly url = "http://notifications:1234/Messages";
+    private url = "";
 
     constructor(private readonly http: Http) { }
 
     public getMessages() {
+
+        const dataContainer = document.getElementById("server-data");
+        this.url = dataContainer.dataset["notificationsUrl"];
+        
         return this.http
             .get(this.url)
             .toPromise()

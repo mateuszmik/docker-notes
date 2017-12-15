@@ -69,5 +69,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DockerNotesCommon\DockerNotesCommon.csproj">
+      <Project>{036F1BB2-BD7F-4173-B647-DC0D3703A70B}</Project>
+      <Name>DockerNotesCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

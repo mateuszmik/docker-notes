@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Configuration;
+using DockerNotesCommon;
 using NATS.Client;
 
 namespace NotificationsService
 {
     internal static class QueueSubscriber
     {
-        private static readonly string MessageAddress = ConfigurationManager.AppSettings.Get("message-queue");
+        private static readonly string MessageAddress = ConfigurationService.GetQueuesEndpoint();
         private static readonly IConnection Connection = new ConnectionFactory().CreateConnection(MessageAddress);
 
         public static void SubscribeToQueue()

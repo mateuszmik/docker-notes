@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Threading;
+using DockerNotesCommon;
 using Nancy.Hosting.Self;
 
 namespace NotificationsService
 {
     internal class NancySelfHost
     {
-        private const string Url = "http://localhost:1234";
+        private string _url; 
         private NancyHost _host;
 
         public void Start()
         {
+            _url = ConfigurationService.GetNotificationsEndpoint();
             var thread = new Thread(QueueSubscriber.SubscribeToQueue);
             thread.Start();
-            _host = new NancyHost(new Uri(Url));
+            _host = new NancyHost(new Uri(_url));
             _host.Start();
-            Console.WriteLine($"Running on {Url}");
+            Console.WriteLine($"Running on {_url}");
         }
 
         public void Stop()

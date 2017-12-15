@@ -15,9 +15,11 @@ require("rxjs/add/operator/toPromise");
 var NotificationsService = /** @class */ (function () {
     function NotificationsService(http) {
         this.http = http;
-        this.url = "http://notifications:1234/Messages";
+        this.url = "";
     }
     NotificationsService.prototype.getMessages = function () {
+        var dataContainer = document.getElementById("server-data");
+        this.url = dataContainer.dataset["notificationsUrl"];
         return this.http
             .get(this.url)
             .toPromise()

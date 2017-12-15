@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Text;
 using System.Threading;
+using DockerNotesCommon;
 using NATS.Client;
 
 namespace ProcessingService
@@ -16,7 +17,7 @@ namespace ProcessingService
 
         private static void Run()
         {
-            var messageAddress = ConfigurationManager.AppSettings.Get("message-queue");
+            var messageAddress = ConfigurationService.GetQueuesEndpoint();
             Console.WriteLine($"Trying to connect to  {messageAddress}");
             
             using (var c = new ConnectionFactory().CreateConnection(messageAddress))
