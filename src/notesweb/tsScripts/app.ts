@@ -15,16 +15,14 @@ import {NotificationsService} from "./notifications.service";
   `
 })
 export class AppComponent {
-    title = 'ASP.NET MVC 5 with Angular 2234';
+    title = 'Example of NotificationService with docker';
     notifications = [];
 
     constructor(private readonly notificationsService: NotificationsService) {
         this.notificationsService
             .getMessages()
-            .then(x => {
-                console.log("dd");
-                console.log(x);
-                this.notifications = x;
+            .subscribe(data => {
+                this.notifications = data;
             });
     }
 }
