@@ -11,22 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-require("rxjs/add/operator/toPromise");
+var Rx_1 = require("rxjs/Rx");
 var NotificationsService = /** @class */ (function () {
     function NotificationsService(http) {
         this.http = http;
-        this.url = "";
     }
     NotificationsService.prototype.getMessages = function () {
+        var _this = this;
         var dataContainer = document.getElementById("server-data");
-        this.url = dataContainer.dataset["notificationsUrl"];
-        return this.http
-            .get(this.url)
-            .toPromise()
-            .then(function (r) {
-            return r.json();
-        })
-            .catch(function (error) { return Promise.reject(error); });
+        var url = dataContainer.dataset["notificationsUrl"];
+        return Rx_1.Observable.interval(5000).flatMap(function () {
+            return _this.http
+                .get(url)
+                .map(function (response) { return response.json(); });
+        });
     };
     NotificationsService = __decorate([
         core_1.Injectable(),
@@ -35,4 +33,3 @@ var NotificationsService = /** @class */ (function () {
     return NotificationsService;
 }());
 exports.NotificationsService = NotificationsService;
-//# sourceMappingURL=notifications.service.js.map
